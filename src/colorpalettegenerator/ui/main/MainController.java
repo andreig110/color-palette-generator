@@ -1,19 +1,15 @@
 package colorpalettegenerator.ui.main;
 
 import colorpalettegenerator.cpgen.ColorPaletteGenerator;
+import colorpalettegenerator.util.ImageUtil;
 import javafx.application.Platform;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
-import javafx.scene.image.WritableImage;
 
-import javax.imageio.ImageIO;
-import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
@@ -80,15 +76,7 @@ public class MainController {
 
     @FXML
     void save(ActionEvent event) {
-        WritableImage writableImage = new WritableImage((int) canvas.getWidth(), (int) canvas.getHeight());
-        canvas.snapshot(null, writableImage);
-
-        File file = new File("palette.png");
-        try {
-            ImageIO.write(SwingFXUtils.fromFXImage(writableImage, null), "png", file);
-        } catch (IOException e) {
-            e.printStackTrace();
-        };
+        ImageUtil.saveToFile(canvas);
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
