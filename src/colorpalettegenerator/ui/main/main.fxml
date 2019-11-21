@@ -8,10 +8,12 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -59,34 +61,102 @@
                <children>
                   <HBox alignment="TOP_RIGHT" spacing="8.0">
                      <children>
-                        <Label minWidth="-Infinity" text="No of Hues:">
+                        <Label minWidth="-Infinity" text="Hues:">
                            <HBox.margin>
                               <Insets top="4.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="tfNumOfHues" alignment="CENTER_RIGHT" maxWidth="42.0" minWidth="42.0" prefWidth="42.0" text="12" />
+                        <TextField fx:id="tfNumOfHues" alignment="CENTER_RIGHT" maxWidth="42.0" minWidth="42.0" prefWidth="42.0" text="12">
+                           <tooltip>
+                              <Tooltip text="Number of Hues" />
+                           </tooltip></TextField>
                      </children>
                   </HBox>
+                  <Separator />
                   <HBox alignment="TOP_RIGHT" layoutX="18.0" layoutY="18.0" spacing="8.0">
                      <children>
-                        <Label text="No of Saturations:">
+                        <Label text="Saturations:">
                            <HBox.margin>
                               <Insets top="4.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="tfNumOfSaturations" alignment="CENTER_RIGHT" maxWidth="42.0" minWidth="42.0" prefWidth="42.0" text="4" />
+                        <TextField fx:id="tfNumOfSaturations" alignment="CENTER_RIGHT" maxWidth="42.0" minWidth="42.0" prefWidth="42.0" text="2">
+                           <tooltip>
+                              <Tooltip text="Number of Saturations" />
+                           </tooltip></TextField>
                      </children>
                   </HBox>
+                  <HBox alignment="TOP_RIGHT" layoutX="18.0" layoutY="63.0" spacing="8.0">
+                     <children>
+                        <Label text="Min:">
+                           <HBox.margin>
+                              <Insets top="4.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="tfMinSaturation" alignment="CENTER_RIGHT" maxWidth="42.0" minWidth="42.0" prefWidth="42.0" text="30">
+                           <tooltip>
+                              <Tooltip text="Minimum Value of Saturation" />
+                           </tooltip>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_RIGHT" layoutX="18.0" layoutY="97.0" spacing="8.0">
+                     <children>
+                        <Label text="Max:">
+                           <HBox.margin>
+                              <Insets top="4.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="tfMaxSaturation" alignment="CENTER_RIGHT" maxWidth="42.0" minWidth="42.0" prefWidth="42.0" text="90">
+                           <tooltip>
+                              <Tooltip text="Maximum Value of Saturation" />
+                           </tooltip>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <Separator />
                   <HBox alignment="TOP_RIGHT" layoutX="18.0" layoutY="52.0" spacing="8.0">
                      <children>
-                        <Label text="No of Brightnesses:">
+                        <Label text="Brightnesses:">
                            <HBox.margin>
                               <Insets top="4.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField fx:id="tfNumOfBrightnesses" alignment="CENTER_RIGHT" maxWidth="42.0" minWidth="42.0" prefWidth="42.0" text="2" />
+                        <TextField fx:id="tfNumOfBrightnesses" alignment="CENTER_RIGHT" maxWidth="42.0" minWidth="42.0" prefWidth="42.0" text="3">
+                           <tooltip>
+                              <Tooltip text="Number of Brightnesses" />
+                           </tooltip></TextField>
                      </children>
                   </HBox>
+                  <HBox alignment="TOP_RIGHT" layoutX="18.0" layoutY="97.0" spacing="8.0">
+                     <children>
+                        <Label text="Min:">
+                           <HBox.margin>
+                              <Insets top="4.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="tfMinBrightness" alignment="CENTER_RIGHT" maxWidth="42.0" minWidth="42.0" prefWidth="42.0" text="0">
+                           <tooltip>
+                              <Tooltip text="Minimum Value of Brightness" />
+                           </tooltip>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_RIGHT" layoutX="18.0" layoutY="131.0" spacing="8.0">
+                     <children>
+                        <Label text="Max:">
+                           <HBox.margin>
+                              <Insets top="4.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="tfMaxBrightness" alignment="CENTER_RIGHT" maxWidth="42.0" minWidth="42.0" prefWidth="42.0" text="100">
+                           <tooltip>
+                              <Tooltip text="Maximum Value of Brightness" />
+                           </tooltip>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <Separator />
                 <Button mnemonicParsing="false" onAction="#generate" text="Generate" />
                </children>
                <padding>

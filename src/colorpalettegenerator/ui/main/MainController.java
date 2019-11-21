@@ -35,8 +35,20 @@ public class MainController {
     @FXML // fx:id="tfNumOfSaturations"
     private TextField tfNumOfSaturations;
 
+    @FXML // fx:id="tfMinSaturation"
+    private TextField tfMinSaturation;
+
+    @FXML // fx:id="tfMaxSaturation"
+    private TextField tfMaxSaturation;
+
     @FXML // fx:id="tfNumOfBrightnesses"
     private TextField tfNumOfBrightnesses;
+
+    @FXML // fx:id="tfMinBrightness"
+    private TextField tfMinBrightness;
+
+    @FXML // fx:id="tfMaxBrightness"
+    private TextField tfMaxBrightness;
 
     @FXML
     void about(ActionEvent event) {
@@ -57,8 +69,13 @@ public class MainController {
     void generate(ActionEvent event) {
         final int numOfHues = Integer.parseInt(tfNumOfHues.getText());
         final int numOfSaturations = Integer.parseInt(tfNumOfSaturations.getText());
+        final double minSaturation = Integer.parseInt(tfMinSaturation.getText()) / 100d;
+        final double maxSaturation = Integer.parseInt(tfMaxSaturation.getText()) / 100d;
         final int numOfBrightnesses = Integer.parseInt(tfNumOfBrightnesses.getText());
-        ColorPaletteGenerator.generate(numOfHues, numOfSaturations, numOfBrightnesses, canvas, 32);
+        final double minBrightness = Integer.parseInt(tfMinBrightness.getText()) / 100d;
+        final double maxBrightness = Integer.parseInt(tfMaxBrightness.getText()) / 100d;
+        ColorPaletteGenerator.generate(numOfHues, numOfSaturations, minSaturation, maxSaturation,
+                numOfBrightnesses, minBrightness, maxBrightness, canvas, 32);
     }
 
     @FXML
@@ -76,7 +93,7 @@ public class MainController {
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-        UnaryOperator<TextFormatter.Change> integerFilter = change -> {
+        UnaryOperator<TextFormatter.Change> numOfHSBFilter = change -> {
             String newText = change.getControlNewText();
             if (newText.matches("([1-9][0-9]*)?")) {
                 if (newText.length() <= 2)
@@ -85,8 +102,24 @@ public class MainController {
             return null;
         };
 
-        tfNumOfHues.setTextFormatter(new TextFormatter<>(integerFilter));
-        tfNumOfSaturations.setTextFormatter(new TextFormatter<>(integerFilter));
-        tfNumOfBrightnesses.setTextFormatter(new TextFormatter<>(integerFilter));
+        tfNumOfHues.setTextFormatter(new TextFormatter<>(numOfHSBFilter));
+        tfNumOfSaturations.setTextFormatter(new TextFormatter<>(numOfHSBFilter));
+        tfNumOfBrightnesses.setTextFormatter(new TextFormatter<>(numOfHSBFilter));
+
+        UnaryOperator<TextFormatter.Change> minMaxSBFilter = change -> {
+            String newText = change.getControlNewText();
+            if (newText.matches("([0-9]*)?")) {
+                if (newText.length() <= 2)
+                    return change;
+                if (Integer.parseInt(newText) == 100)
+                    return change;
+            }
+            return null;
+        };
+
+        tfMinSaturation.setTextFormatter(new TextFormatter<>(minMaxSBFilter));
+        tfMaxSaturation.setTextFormatter(new TextFormatter<>(minMaxSBFilter));
+        tfMinBrightness.setTextFormatter(new TextFormatter<>(minMaxSBFilter));
+        tfMaxBrightness.setTextFormatter(new TextFormatter<>(minMaxSBFilter));
     }
 }
