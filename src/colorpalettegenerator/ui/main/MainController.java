@@ -5,11 +5,17 @@ import colorpalettegenerator.util.ImageUtil;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
@@ -47,12 +53,15 @@ public class MainController {
     private TextField tfMaxBrightness;
 
     @FXML
-    void about(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("About Color palette generator");
-        alert.setHeaderText("Color palette generator");
-        alert.setContentText("A program that generate color palettes.");
-        alert.showAndWait();
+    void about(ActionEvent event) throws IOException {
+        Stage aboutStage = new Stage();
+        aboutStage.initOwner(canvas.getScene().getWindow());
+        aboutStage.initModality(Modality.APPLICATION_MODAL);
+        aboutStage.initStyle(StageStyle.UNDECORATED);
+        aboutStage.setTitle("About Color palette generator");
+        Parent root = FXMLLoader.load(getClass().getResource("../about/about.fxml"));
+        aboutStage.setScene(new Scene(root, 360, 160));
+        aboutStage.showAndWait();
     }
 
     @FXML
